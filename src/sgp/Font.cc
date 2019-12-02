@@ -283,7 +283,7 @@ void gprintf(INT32 x, INT32 const y, wchar_t const* fmt, ...)
 }
 
 
-UINT32 MPrintChar(INT32 const x, INT32 const y, wchar_t const c)
+UINT32 MPrintChar(INT32 x, INT32 y, char32_t c)
 {
 	GlyphIdx const glyph = GetGlyphIndex(c);
 	SGPFont  const font  = FontDefault;

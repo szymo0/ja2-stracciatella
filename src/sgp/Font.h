@@ -35,7 +35,7 @@ void SetFontShadow(UINT8 ubBackground);
  * than 512 word-characters. */
 void gprintf(INT32 x, INT32 y, wchar_t const* fmt, ...);
 
-UINT32 MPrintChar(INT32 x, INT32 y, wchar_t);
+UINT32 MPrintChar(INT32 x, INT32 y, char32_t c);
 void   MPrintBuffer(UINT16* pDestBuf, UINT32 uiDestPitchBYTES, INT32 x, INT32 y, wchar_t const* str);
 void   MPrint(INT32 x, INT32 y, wchar_t const* str);
 void   mprintf(INT32 x, INT32 y, wchar_t const* fmt, ...);
