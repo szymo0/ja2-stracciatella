@@ -171,11 +171,11 @@ bool IsPrintableChar(wchar_t const c)
 }
 
 
-/* Given a wide char, this function returns the index of the glyph. If no glyph
- * exists for the requested wide char, the glyph index of '?' is returned. */
-static GlyphIdx GetGlyphIndex(wchar_t const c)
+/* Given a unicode codepoint, this function returns the index of the glyph. If no glyph
+ * exists for the requested codepoint, the glyph index of '?' is returned. */
+static GlyphIdx GetGlyphIndex(char32_t c)
 {
-	if ((0 <= c) && (c < TRANSLATION_TABLE_SIZE))
+	if (/*c >= 0 &&*/c < TRANSLATION_TABLE_SIZE)
 	{
 		GlyphIdx const idx = TranslationTable[c];
 		if (idx != 0 || c == getZeroGlyphChar()) return idx;
