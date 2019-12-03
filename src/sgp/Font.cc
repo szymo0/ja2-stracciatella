@@ -185,7 +185,7 @@ static GlyphIdx GetGlyphIndex(char32_t c)
 }
 
 
-UINT32 GetCharWidth(HVOBJECT SGPFont, wchar_t c)
+UINT32 GetCharWidth(HVOBJECT SGPFont, char32_t c)
 {
 	return GetWidth(SGPFont, GetGlyphIndex(c));
 }

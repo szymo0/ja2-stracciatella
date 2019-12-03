@@ -59,7 +59,7 @@ UINT16  GetFontHeight(SGPFont);
 void    InitializeFontManager(void);
 void    UnloadFont(SGPFont);
 
-UINT32 GetCharWidth(HVOBJECT SGPFont, wchar_t c);
+UINT32 GetCharWidth(HVOBJECT SGPFont, char32_t c);
 
 INT16 StringPixLength(const wchar_t* string, SGPFont);
 extern void SaveFontSettings(void);
