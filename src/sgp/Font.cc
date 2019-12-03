@@ -261,8 +261,13 @@ void FindFontRightCoordinates(INT16 sLeft, INT16 sTop, INT16 sWidth, INT16 sHeig
 
 void FindFontCenterCoordinates(INT16 sLeft, INT16 sTop, INT16 sWidth, INT16 sHeight, const wchar_t* pStr, SGPFont const font, INT16* psNewX, INT16* psNewY)
 {
+	ST::string text(pStr, ST_AUTO_SIZE, ST::substitute_invalid);
+	FindFontCenterCoordinates(sLeft, sTop, sWidth, sHeight, text, font, psNewX, psNewY);
+}
+void FindFontCenterCoordinates(INT16 sLeft, INT16 sTop, INT16 sWidth, INT16 sHeight, const ST::string& text, SGPFont const font, INT16* psNewX, INT16* psNewY)
+{
 	// Compute the coordinates to center the text
-	INT16 xp = (sWidth - StringPixLength(pStr, font) + 1) / 2 + sLeft;
+	INT16 xp = (sWidth - StringPixLength(text, font) + 1) / 2 + sLeft;
 	INT16 yp = (sHeight - GetFontHeight(font)) / 2 + sTop;
 
 	*psNewX = xp;
