@@ -1,6 +1,8 @@
 #ifndef __FINANCES_H
 #define __FINANCES_H
 
+#include <string_theory/string>
+
 void GameInitFinances(void);
 void EnterFinances(void);
 void ExitFinances(void);
@@ -45,6 +47,7 @@ void AddTransactionToPlayersBook(UINT8 ubCode, UINT8 ubSecondCode, UINT32 uiDate
 INT32 GetProjectedTotalDailyIncome( void );
 
 void SPrintMoney(wchar_t* Str, INT32 Amount);
+void SPrintMoney(ST::string& buf, INT32 Amount);
 
 INT32 GetCurrentBalance(void);
 

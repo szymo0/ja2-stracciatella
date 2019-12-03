@@ -1023,14 +1023,20 @@ static void InternalSPrintMoney(ST::string_stream& ss, INT32 Amount)
 
 void SPrintMoney(wchar_t* Str, INT32 Amount)
 {
-	ST::string_stream ss;
-	ss.append_char('$');
-	InternalSPrintMoney(ss, Amount);
-	for (wchar_t c : ss.to_string().to_wchar())
+	ST::string buf;
+	SPrintMoney(buf, Amount);
+	for (wchar_t c : buf.to_wchar())
 	{
 		*Str++ = c;
 	}
 	*Str = '\0';
+}
+void SPrintMoney(ST::string& buf, INT32 Amount)
+{
+	ST::string_stream ss;
+	ss.append_char('$');
+	InternalSPrintMoney(ss, Amount);
+	buf = ss.to_string();
 }
 
 
