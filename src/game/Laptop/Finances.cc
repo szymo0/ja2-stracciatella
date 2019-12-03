@@ -1,3 +1,5 @@
+#include <string_theory/string_stream>
+
 #include "Directories.h"
 #include "Font.h"
 #include "Laptop.h"
@@ -1001,49 +1003,46 @@ static void LoadInRecords(UINT32 const page)
 }
 
 
-static void InternalSPrintMoney(wchar_t* Str, INT32 Amount)
+static void InternalSPrintMoney(ST::string_stream& ss, INT32 Amount)
 {
-	if (Amount == 0)
+	ST::string_stream number;
+	number << Amount;
+	size_t n = number.size();
+	size_t first_digit = Amount < 0 ? 1 : 0;
+	for (size_t i = 0; i < n; ++i)
 	{
-		*Str++ = L'0';
-		*Str   = L'\0';
-	}
-	else
-	{
-		if (Amount < 0)
+		if (i > first_digit && (n - i) % 3 == 0)
 		{
-			*Str++ = L'-';
-			Amount = -Amount;
+			ss.append_char(',');
 		}
-
-		UINT32 Digits = 0;
-		for (INT32 Tmp = Amount; Tmp != 0; Tmp /= 10) ++Digits;
-		Str += Digits + (Digits - 1) / 3;
-		*Str-- = L'\0';
-		Digits = 0;
-		do
-		{
-			if (Digits != 0 && Digits % 3 == 0) *Str-- = L',';
-			++Digits;
-			*Str-- = L'0' + Amount % 10;
-			Amount /= 10;
-		}
-		while (Amount != 0);
+		ss.append_char(number.raw_buffer()[i]);
 	}
 }
 
 
 void SPrintMoney(wchar_t* Str, INT32 Amount)
 {
-	*Str++ = L'$';
-	InternalSPrintMoney(Str, Amount);
+	ST::string_stream ss;
+	ss.append_char('$');
+	InternalSPrintMoney(ss, Amount);
+	for (wchar_t c : ss.to_string().to_wchar())
+	{
+		*Str++ = c;
+	}
+	*Str = '\0';
 }
 
 
 static void SPrintMoneyNoDollarOnZero(wchar_t* Str, INT32 Amount)
 {
-	if (Amount != 0) *Str++ = L'$';
-	InternalSPrintMoney(Str, Amount);
+	ST::string_stream ss;
+	if (Amount != 0) ss.append_char('$');
+	InternalSPrintMoney(ss, Amount);
+	for (wchar_t c : ss.to_string().to_wchar())
+	{
+		*Str++ = c;
+	}
+	*Str = '\0';
 }
 
 
