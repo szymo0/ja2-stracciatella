@@ -164,7 +164,7 @@ UINT16 GetFontHeight(SGPFont const font)
 }
 
 
-bool IsPrintableChar(wchar_t const c)
+bool IsPrintableChar(char32_t c)
 {
 	if (TRANSLATION_TABLE_SIZE <= c) return false;
 	return TranslationTable[c] != 0 || c == getZeroGlyphChar();

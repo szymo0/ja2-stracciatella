@@ -68,6 +68,6 @@ extern void RestoreFontSettings(void);
 void FindFontRightCoordinates( INT16 sLeft, INT16 sTop, INT16 sWidth, INT16 sHeight, const wchar_t* pStr, SGPFont, INT16* psNewX, INT16* psNewY);
 void FindFontCenterCoordinates(INT16 sLeft, INT16 sTop, INT16 sWidth, INT16 sHeight, const wchar_t* pStr, SGPFont, INT16* psNewX, INT16* psNewY);
 
-bool IsPrintableChar(wchar_t);
+bool IsPrintableChar(char32_t c);
 
 #endif
