@@ -114,15 +114,18 @@ static UINT32 GetWidth(HVOBJECT const hSrcVObject, GlyphIdx const ssIndex)
 INT16 StringPixLength(wchar_t const* const string, SGPFont const font)
 {
 	if (!string) return 0;
-
+	ST::string text(string, ST_AUTO_SIZE, ST::substitute_invalid);
+	return StringPixLength(text, font);
+}
+INT16 StringPixLength(const ST::string& string, SGPFont const font)
+{
 	UINT32 w = 0;
-	for (wchar_t const* c = string; *c != L'\0'; ++c)
+	for (char32_t c : string.to_utf32())
 	{
-		w += GetCharWidth(font, *c);
+		w += GetCharWidth(font, c);
 	}
 	return w;
 }
-
 
 /* Saves the current font printing settings into temporary locations. */
 void SaveFontSettings(void)

@@ -1,6 +1,8 @@
 #ifndef FONT_H
 #define FONT_H
 
+#include <string_theory/string>
+
 #include "Types.h"
 
 
@@ -62,6 +64,7 @@ void    UnloadFont(SGPFont);
 UINT32 GetCharWidth(HVOBJECT SGPFont, char32_t c);
 
 INT16 StringPixLength(const wchar_t* string, SGPFont);
+INT16 StringPixLength(const ST::string& string, SGPFont const font);
 extern void SaveFontSettings(void);
 extern void RestoreFontSettings(void);
 

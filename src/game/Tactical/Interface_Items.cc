@@ -2392,7 +2392,7 @@ void RenderItemDescriptionBox(void)
 
 			INT16 const pros_cons_indent = __max(StringPixLength(gzProsLabel, ITEMDESC_FONT), StringPixLength(gzConsLabel, ITEMDESC_FONT)) + 10;
 			x += pros_cons_indent;
-			w -= pros_cons_indent + StringPixLength(DOTDOTDOT, ITEMDESC_FONT);
+			w -= pros_cons_indent + StringPixLength("..."_st, ITEMDESC_FONT);
 
 			GenerateProsString(gzItemPros, obj, w);
 			MPrint(x, y, gzItemPros);

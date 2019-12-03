@@ -450,13 +450,13 @@ static void RenderSectorInformation(void)
 		INT32 x;
 		x = 140;
 		MPrint( x, 75, L"(" );
-		x += StringPixLength( L"(", FONT10ARIAL ) + 2;
-		if (m->sNorthGridNo    != -1) { MPrint(x, 75, L"N"); x += StringPixLength(L"N", FONT10ARIAL) + 2; }
-		if (m->sEastGridNo     != -1) { MPrint(x, 75, L"E"); x += StringPixLength(L"E", FONT10ARIAL) + 2; }
-		if (m->sSouthGridNo    != -1) { MPrint(x, 75, L"S"); x += StringPixLength(L"S", FONT10ARIAL) + 2; }
-		if (m->sWestGridNo     != -1) { MPrint(x, 75, L"W"); x += StringPixLength(L"W", FONT10ARIAL) + 2; }
-		if (m->sCenterGridNo   != -1) { MPrint(x, 75, L"C"); x += StringPixLength(L"C", FONT10ARIAL) + 2; }
-		if (m->sIsolatedGridNo != -1) { MPrint(x, 75, L"I"); x += StringPixLength(L"I", FONT10ARIAL) + 2; }
+		x += StringPixLength( "("_st, FONT10ARIAL ) + 2;
+		if (m->sNorthGridNo    != -1) { MPrint(x, 75, L"N"); x += StringPixLength("N"_st, FONT10ARIAL) + 2; }
+		if (m->sEastGridNo     != -1) { MPrint(x, 75, L"E"); x += StringPixLength("E"_st, FONT10ARIAL) + 2; }
+		if (m->sSouthGridNo    != -1) { MPrint(x, 75, L"S"); x += StringPixLength("S"_st, FONT10ARIAL) + 2; }
+		if (m->sWestGridNo     != -1) { MPrint(x, 75, L"W"); x += StringPixLength("W"_st, FONT10ARIAL) + 2; }
+		if (m->sCenterGridNo   != -1) { MPrint(x, 75, L"C"); x += StringPixLength("C"_st, FONT10ARIAL) + 2; }
+		if (m->sIsolatedGridNo != -1) { MPrint(x, 75, L"I"); x += StringPixLength("I"_st, FONT10ARIAL) + 2; }
 		MPrint(x, 75, L")");
 	}
 	mprintf( 10, 85,			L"Number of rooms:  %d", s->ubNumRooms );
