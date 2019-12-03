@@ -548,6 +548,7 @@ static INT32 GetTodaysDaysIncome(void);
 static INT32 GetTodaysOtherDeposits(void);
 static INT32 GetYesterdaysOtherDeposits(void);
 static void SPrintMoneyNoDollarOnZero(wchar_t* Str, INT32 Amount);
+static void SPrintMoneyNoDollarOnZero(ST::string& text, INT32 Amount);
 
 
 static void DrawSummaryText(void)
@@ -1035,14 +1036,20 @@ void SPrintMoney(wchar_t* Str, INT32 Amount)
 
 static void SPrintMoneyNoDollarOnZero(wchar_t* Str, INT32 Amount)
 {
-	ST::string_stream ss;
-	if (Amount != 0) ss.append_char('$');
-	InternalSPrintMoney(ss, Amount);
-	for (wchar_t c : ss.to_string().to_wchar())
+	ST::string buf;
+	SPrintMoneyNoDollarOnZero(buf, Amount);
+	for (wchar_t c : buf.to_wchar())
 	{
 		*Str++ = c;
 	}
 	*Str = '\0';
+}
+static void SPrintMoneyNoDollarOnZero(ST::string& buf, INT32 Amount)
+{
+	ST::string_stream ss;
+	if (Amount != 0) ss.append_char('$');
+	InternalSPrintMoney(ss, Amount);
+	buf = ss.to_string();
 }
 
 
