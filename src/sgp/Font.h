@@ -39,6 +39,7 @@ void gprintf(INT32 x, INT32 y, wchar_t const* fmt, ...);
 
 UINT32 MPrintChar(INT32 x, INT32 y, char32_t c);
 void   MPrintBuffer(UINT16* pDestBuf, UINT32 uiDestPitchBYTES, INT32 x, INT32 y, wchar_t const* str);
+void   MPrintBuffer(UINT16* pDestBuf, UINT32 uiDestPitchBYTES, INT32 x, INT32 y, const ST::string& text);
 void   MPrint(INT32 x, INT32 y, wchar_t const* str);
 void   mprintf(INT32 x, INT32 y, wchar_t const* fmt, ...);
 void   mprintf_buffer(UINT16* pDestBuf, UINT32 uiDestPitchBYTES, INT32 x, INT32 y, wchar_t const* fmt, ...);

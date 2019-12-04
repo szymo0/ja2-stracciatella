@@ -309,10 +309,15 @@ UINT32 MPrintChar(INT32 x, INT32 y, char32_t c)
 
 void MPrintBuffer(UINT16* const pDestBuf, UINT32 const uiDestPitchBYTES, INT32 x, INT32 const y, wchar_t const* str)
 {
+	ST::string text(str, ST_AUTO_SIZE, ST::substitute_invalid);
+	MPrintBuffer(pDestBuf, uiDestPitchBYTES, x, y, text);
+}
+void MPrintBuffer(UINT16* pDestBuf, UINT32 uiDestPitchBYTES, INT32 x, INT32 y, const ST::string& text)
+{
 	SGPFont const font = FontDefault;
-	for (; *str != L'\0'; ++str)
+	for (char32_t c : text.to_utf32())
 	{
-		GlyphIdx const glyph = GetGlyphIndex(*str);
+		GlyphIdx const glyph = GetGlyphIndex(c);
 		Blt8BPPDataTo16BPPBufferMonoShadowClip(pDestBuf, uiDestPitchBYTES, font, x, y, glyph, &FontDestRegion, FontForeground16, FontBackground16, FontShadow16);
 		x += GetWidth(font, glyph);
 	}

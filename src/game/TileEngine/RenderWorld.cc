@@ -1,4 +1,7 @@
 #include <stdint.h>
+
+#include <string_theory/format>
+
 #include "Animation_Control.h"
 #include "Animation_Data.h"
 #include "Debug.h"
@@ -1199,8 +1202,7 @@ zlevel_topmost:
 							UINT8 const foreground = gfUIDisplayActionPointsBlack ? FONT_MCOLOR_BLACK : FONT_MCOLOR_WHITE;
 							SetFontAttributes(TINYFONT1, foreground);
 							SetFontDestBuffer(guiSAVEBUFFER, 0, gsVIEWPORT_WINDOW_START_Y, SCREEN_WIDTH, gsVIEWPORT_WINDOW_END_Y);
-							wchar_t buf[16];
-							swprintf(buf, lengthof(buf), L"%d", pNode->uiAPCost);
+							ST::string buf = ST::format("{}", pNode->uiAPCost);
 							INT16 sX;
 							INT16 sY;
 							FindFontCenterCoordinates(sXPos, sYPos, 1, 1, buf, TINYFONT1, &sX, &sY);
@@ -3890,7 +3892,7 @@ static void RenderFOVDebugInfo(INT16 sStartPointX_M, INT16 sStartPointY_M, INT16
 					SetFont(SMALLCOMPFONT);
 					SetFontDestBuffer(FRAME_BUFFER, 0, 0, SCREEN_WIDTH, gsVIEWPORT_END_Y);
 					SetFontForeground(FONT_FCOLOR_YELLOW);
-					MPrintBuffer(pDestBuf, uiDestPitchBYTES, sX, sY + 4, L"x");
+					MPrintBuffer(pDestBuf, uiDestPitchBYTES, sX, sY + 4, "x"_st);
 					SetFontDestBuffer(FRAME_BUFFER);
 				}
 			}

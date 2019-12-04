@@ -1,3 +1,5 @@
+#include <string_theory/format>
+
 #include "Directories.h"
 #include "FileMan.h"
 #include "Font.h"
@@ -4798,12 +4800,12 @@ void RenderItemPickupMenu()
 			{
 				SetFontAttributes(ITEM_FONT, FONT_GRAY4);
 
-				swprintf(pStr, lengthof(pStr), L"%d", o.ubNumberOfObjects);
+				ST::string text = ST::format("{}", o.ubNumberOfObjects);
 
 				INT16 sFontX;
 				INT16 sFontY;
-				FindFontRightCoordinates(sX - 4, sY + 14, 42, 1, pStr, ITEM_FONT, &sFontX, &sFontY);
-				MPrintBuffer(pDestBuf, uiDestPitchBYTES, sFontX, sFontY, pStr);
+				FindFontRightCoordinates(sX - 4, sY + 14, 42, 1, text, ITEM_FONT, &sFontX, &sFontY);
+				MPrintBuffer(pDestBuf, uiDestPitchBYTES, sFontX, sFontY, text);
 				SetFont(ITEMDESC_FONT);
 			}
 
@@ -4812,7 +4814,7 @@ void RenderItemPickupMenu()
 				// Render attachment symbols
 				SetFontForeground(GetAttachmentHintColor(&o));
 				SetFontShadow(DEFAULT_SHADOW);
-				wchar_t const* const AttachMarker   = L"*";
+				ST::string AttachMarker = "*"_st;
 				UINT16         const uiStringLength = StringPixLength(AttachMarker, ITEM_FONT);
 				INT16          const sNewX          = sX + 43 - uiStringLength - 4;
 				INT16          const sNewY          = sY + 2;
