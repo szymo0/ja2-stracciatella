@@ -3814,7 +3814,7 @@ static void RenderRoomInfo(INT16 sStartPointX_M, INT16 sStartPointY_M, INT16 sSt
 						case 3: SetFontForeground(FONT_LTBLUE);  break;
 						case 4: SetFontForeground(FONT_LTGREEN); break;
 					}
-					mprintf_buffer(pDestBuf, uiDestPitchBYTES, sX, sY, L"%d", gubWorldRoomInfo[usTileIndex]);
+					MPrintBuffer(pDestBuf, uiDestPitchBYTES, sX, sY, ST::format("{}", gubWorldRoomInfo[usTileIndex]));
 					SetFontDestBuffer(FRAME_BUFFER);
 				}
 			}
@@ -3881,7 +3881,7 @@ static void RenderFOVDebugInfo(INT16 sStartPointX_M, INT16 sStartPointY_M, INT16
 					SetFont(SMALLCOMPFONT);
 					SetFontDestBuffer(FRAME_BUFFER, 0, 0, SCREEN_WIDTH, gsVIEWPORT_END_Y);
 					SetFontForeground(FONT_GRAY3);
-					mprintf_buffer(pDestBuf, uiDestPitchBYTES, sX, sY, L"%d", gubFOVDebugInfoInfo[usTileIndex]);
+					MPrintBuffer(pDestBuf, uiDestPitchBYTES, sX, sY, ST::format("{}", gubFOVDebugInfoInfo[usTileIndex]));
 					SetFontDestBuffer(FRAME_BUFFER);
 
 					Blt8BPPDataTo16BPPBufferTransparentClip(pDestBuf, uiDestPitchBYTES, gTileDatabase[0].hTileSurface, sTempPosX_S, sTempPosY_S, 0, &gClippingRect);
@@ -3968,7 +3968,7 @@ static void RenderCoverDebugInfo(INT16 sStartPointX_M, INT16 sStartPointY_M, INT
 					{
 						SetFontForeground(FONT_GRAY3);
 					}
-					mprintf_buffer(pDestBuf, uiDestPitchBYTES, sX, sY, L"%d", gsCoverValue[usTileIndex]);
+					MPrintBuffer(pDestBuf, uiDestPitchBYTES, sX, sY, ST::format("{}", gsCoverValue[usTileIndex]));
 					SetFontDestBuffer(FRAME_BUFFER);
 				}
 			}
@@ -4039,7 +4039,7 @@ static void RenderGridNoVisibleDebugInfo(INT16 sStartPointX_M, INT16 sStartPoint
 				{
 					SetFontForeground(FONT_GRAY3);
 				}
-				mprintf_buffer(pDestBuf, uiDestPitchBYTES, sX, sY, L"%d", usTileIndex);
+				MPrintBuffer(pDestBuf, uiDestPitchBYTES, sX, sY, ST::format("{}", usTileIndex));
 				SetFontDestBuffer(FRAME_BUFFER);
 			}
 

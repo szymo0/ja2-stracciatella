@@ -346,17 +346,6 @@ void mprintf(INT32 const x, INT32 const y, wchar_t const* const fmt, ...)
 }
 
 
-void mprintf_buffer(UINT16* const pDestBuf, UINT32 const uiDestPitchBYTES, INT32 const x, INT32 const y, wchar_t const* const fmt, ...)
-{
-	wchar_t str[512];
-	va_list ap;
-	va_start(ap, fmt);
-	vswprintf(str, lengthof(str), fmt, ap);
-	va_end(ap);
-	MPrintBuffer(pDestBuf, uiDestPitchBYTES, x, y, str);
-}
-
-
 void InitializeFontManager(void)
 {
 	FontDefault    = 0;
