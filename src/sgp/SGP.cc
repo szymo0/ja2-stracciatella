@@ -758,6 +758,15 @@ TEST(cpp_language, new_array_initialization)
 		delete tmp;
 	}
 	{
+		// avoid this pattern, it's uninitialized memory for trivial structs (PODs)
+		NonTrivialTestStruct* tmp = new NonTrivialTestStruct[2];
+		EXPECT_EQ(tmp[0].a, 0);
+		EXPECT_EQ(tmp[0].b, 0);
+		EXPECT_EQ(tmp[1].a, 0);
+		EXPECT_EQ(tmp[1].b, 0);
+		delete tmp;
+	}
+	{
 		TestStruct* tmp = new TestStruct[2]();
 		EXPECT_EQ(tmp[0].a, 0);
 		EXPECT_EQ(tmp[0].b, 0);
@@ -790,35 +799,6 @@ TEST(cpp_language, new_array_initialization)
 		delete tmp;
 	}
 	{
-		TestStruct* tmp = new TestStruct[2]{
-			{1, 2, {3, 4}}
-		};
-		EXPECT_EQ(tmp[0].a, 1);
-		EXPECT_EQ(tmp[0].b, 2);
-		EXPECT_EQ(tmp[0].c[0], 3);
-		EXPECT_EQ(tmp[0].c[1], 4);
-		EXPECT_EQ(tmp[1].a, 0);
-		EXPECT_EQ(tmp[1].b, 0);
-		EXPECT_EQ(tmp[1].c[0], 0);
-		EXPECT_EQ(tmp[1].c[1], 0);
-		delete tmp;
-	}
-	{
-		TestStruct* tmp = new TestStruct[2]{
-			{1, 2, {3, 4}},
-			{5, 6, {7, 8}}
-		};
-		EXPECT_EQ(tmp[0].a, 1);
-		EXPECT_EQ(tmp[0].b, 2);
-		EXPECT_EQ(tmp[0].c[0], 3);
-		EXPECT_EQ(tmp[0].c[1], 4);
-		EXPECT_EQ(tmp[1].a, 5);
-		EXPECT_EQ(tmp[1].b, 6);
-		EXPECT_EQ(tmp[1].c[0], 7);
-		EXPECT_EQ(tmp[1].c[1], 8);
-		delete tmp;
-	}
-	{
 		NonTrivialTestStruct* tmp = new NonTrivialTestStruct[2]{};
 		EXPECT_EQ(tmp[0].a, 0);
 		EXPECT_EQ(tmp[0].b, 0);
@@ -827,6 +807,7 @@ TEST(cpp_language, new_array_initialization)
 		delete tmp;
 	}
 	{
+		// avoid this pattern, it's uninitialized memory for trivial structs (PODs) in VS2015
 		NonTrivialTestStruct* tmp = new NonTrivialTestStruct[2]{
 			{123}
 		};
@@ -837,6 +818,7 @@ TEST(cpp_language, new_array_initialization)
 		delete tmp;
 	}
 	{
+		// avoid this pattern, it's uninitialized memory for trivial structs (PODs) in VS2015
 		NonTrivialTestStruct* tmp = new NonTrivialTestStruct[2]{
 			{123},
 			{456}
